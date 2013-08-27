@@ -1,0 +1,7 @@
+parameters:
+    ite_doctrine.cascade_persister.class:                   ITE\DoctrineBundle\Service\CascadePersister
+
+services:
+    ite_doctrine.cascade_persister:
+        class:                                              %ite_doctrine.cascade_persister.class%
+        arguments: [ @doctrine.orm.entity_manager ]

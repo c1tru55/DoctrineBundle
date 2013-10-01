@@ -11,7 +11,17 @@ class UniqueInCollection extends Constraint
 {
     public $message = 'This value is already used.';
 
+    public $fields = array();
+
     public $errorPath = null;
 
-    public $propertyPath = null;
+    public function getRequiredOptions()
+    {
+        return array('fields');
+    }
+
+    public function getDefaultOption()
+    {
+        return 'fields';
+    }
 }

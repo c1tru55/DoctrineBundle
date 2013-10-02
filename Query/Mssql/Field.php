@@ -40,11 +40,7 @@ class Field extends FunctionNode
 	
     public function getSql(SqlWalker $sqlWalker)
     {
-        $query = 'CASE ';
-		
-        $query .= $this->field->dispatch($sqlWalker);
-		
-        $query .= ' ';
+        $query = 'CASE ' . $this->field->dispatch($sqlWalker) . ' ';
 		
         for ($i = 0; $i < count($this->values); $i++) {
             if ($i > 0) {

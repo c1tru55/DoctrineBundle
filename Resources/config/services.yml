@@ -1,14 +1,14 @@
 parameters:
     ite_doctrine.cascade_persister.class:                   ITE\DoctrineBundle\Service\CascadePersister
-#    sensio_framework_extra.converter.doctrine.class:        ITE\DoctrineBundle\Request\ParamConverter\DoctrineParamConverter
+    sensio_framework_extra.converter.doctrine.class:        ITE\DoctrineBundle\Request\ParamConverter\DoctrineParamConverter
 
 services:
     ite_doctrine.cascade_persister:
         class:                                              %ite_doctrine.cascade_persister.class%
         arguments: [ @doctrine.orm.entity_manager ]
 
-#    sensio_framework_extra.converter.doctrine:
-#        class:                                              %sensio_framework_extra.converter.doctrine.class%
-#        arguments: [ @?doctrine, @?service_container ]
-#        tags:
-#            - { name: request.param_converter, priority: 10, converter: doctrine.orm }
+    sensio_framework_extra.converter.doctrine.orm:
+        class:                                              %sensio_framework_extra.converter.doctrine.class%
+        arguments: [ @service_container, @?doctrine ]
+        tags:
+            - { name: request.param_converter, priority: 10, converter: doctrine.orm }

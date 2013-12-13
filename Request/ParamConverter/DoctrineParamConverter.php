@@ -35,13 +35,13 @@ class DoctrineParamConverter extends BaseDoctrineParamConverter
     protected $propertyAccessor;
 
     /**
-     * @param ManagerRegistry $registry
      * @param ContainerInterface $container
+     * @param ManagerRegistry $registry
      */
-    public function __construct(ManagerRegistry $registry = null, ContainerInterface $container)
+    public function __construct(ContainerInterface $container, ManagerRegistry $registry = null)
     {
-        $this->registry = $registry;
         $this->container = $container;
+        $this->registry = $registry;
         $this->propertyAccessor = PropertyAccess::createPropertyAccessor();
 
         parent::__construct($registry);

@@ -95,9 +95,11 @@ class DoctrineParamConverter extends BaseDoctrineParamConverter
         $self = $this;
         if (isset($options['repository_args'])) {
             $args = $options['repository_args'];
-            $args = array_map(function($arg) use ($id, $self) {
+            $args = array_map(function($arg) use ($id, $self, $request) {
                 if ('id' === $arg) {
                     return $id;
+                } elseif ($request->attributes->has($arg)) {
+                    return $request->attributes->get($arg);
                 } elseif (false !== strpos($arg, '::')) {
                     list($class, $property) = explode('::', $arg, 2);
                     if ('@' === substr($class, 0, 1)) {
